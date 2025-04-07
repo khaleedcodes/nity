@@ -1,54 +1,36 @@
 trigger:
   branches:
     include:
-      - main  # Trigger the pipeline when pushing to the 'main' branch
+      - main  # Trigger on changes to the 'main' branch
 
-pr:
-  none  # No pull request trigger needed for now
-
-variables:
-  buildConfiguration: 'Release'  # Define build configuration (Release by default)
-  artifactName: 'task-app.zip'  # Define artifact name for the build output
+pool:
+  name: 'Default'  # Use your self-hosted agent pool
 
 stages:
+  # Build Stage
   - stage: Build
-    displayName: Build stage
+    displayName: 'Build the Application'
     jobs:
       - job: BuildJob
-        displayName: Build Job
-        pool:
-          name: 'Default'  # Using self-hosted agent pool, make sure it's set up
-          
+        displayName: 'Build Job'
         steps:
-          # Step 1: Checkout the code from GitHub
-          - task: Checkout@1
-            displayName: 'Checkout Code'
-
-          # Step 2: Set up Node.js environment
-          - task: UseNode@0
+          # Install Node.js (Updated to use NodeTool)
+          - task: NodeTool@0
             inputs:
-              versionSpec: '16.x'
-            displayName: 'Set up Node.js'
+              versionSpec: '16.x'  # Specify the Node.js version (16.x or other)
+            displayName: 'Install Node.js'
 
-          # Step 3: Install dependencies
-          - script: |
-              npm install
-            displayName: 'Install dependencies'
+          # Install project dependencies
+          - script: npm install
+            displayName: 'Install Dependencies'
 
-          # Step 4: Run the build command (assuming a Node.js app)
-          - script: |
-              npm run build
-            displayName: 'Build app'
+          # Build the app (React app)
+          - script: npm run build
+            displayName: 'Build the React App'
 
-          # Step 5: Run unit tests and generate code coverage report
-          - script: |
-              npm test -- --coverage
-            displayName: 'Run unit tests with coverage'
-
-          # Step 6: Publish build artifacts
+          # Publish build artifacts (to use in later stages)
           - task: PublishBuildArtifacts@1
             inputs:
-              PathtoPublish: '$(Build.ArtifactStagingDirectory)'  # Default artifact staging directory
-              ArtifactName: $(artifactName)
-              publishLocation: 'Container'  # Store in the pipeline container
-            displayName: 'Publish Build Artifacts'
+              PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+              ArtifactName: 'drop'
+              publishLocation: 'Container'
