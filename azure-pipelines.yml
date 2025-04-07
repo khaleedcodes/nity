@@ -21,11 +21,11 @@ stages:
           
         steps:
           # Step 1: Checkout the code from GitHub
-          - task: Checkout@2
+          - task: Checkout@1
             displayName: 'Checkout Code'
 
           # Step 2: Set up Node.js environment
-          - task: UseNode@2
+          - task: UseNode@0
             inputs:
               versionSpec: '16.x'
             displayName: 'Set up Node.js'
