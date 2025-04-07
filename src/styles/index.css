@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+@theme {
+  --color-dark-primary-bg: oklch(0.17 0.0026 67.65);
+  --color-dark-secondary-bg: oklch(0.26 0.0024 67.72);
+  --color-dark-todo-hover: oklch(0.35 0.0022 67.75);
+  --color-dark-nav-color: oklch(0.22 0.0025 67.7);
+  --color-dark-line-color: oklch(0.4 0.0043 67.7);
+}
