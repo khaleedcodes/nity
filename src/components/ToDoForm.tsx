@@ -13,7 +13,7 @@ function TodoForm({ addToDo }: ToDoFormProps) {
       addToDo({
         toDoTitle,
         toDoID: crypto.randomUUID(),
-        isToDoCompleted: false,
+        // isToDoCompleted: false,
       }); // Calls 'addToDo' with input value
     }
   }
