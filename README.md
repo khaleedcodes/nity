@@ -1,28 +1,75 @@
-# React + TypeScript + Vite
+```markdown
+# 🧠 Nity – Minimal Task Manager App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Nity is a clean and simple task management app built using **React**, **TypeScript**, and **Vite**. It allows users to add tasks, store them in local storage, and mark them as completed — all while maintaining clarity and usability.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ⚙️ Tech Stack
 
-## Expanding the ESLint configuration
+- ⚛️ React (with TypeScript)
+- ⚡ Vite for fast dev experience and hot module reload
+- 💅 CSS for styling
+- 💾 Local Storage for data persistence
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
+
+## ✨ Features
+
+- 📝 Create tasks with a simple UI
+- 💾 Store tasks persistently in browser local storage
+- ✅ Mark tasks as completed (without deleting)
+- ♻️ Reactively updates UI based on task state
+
+---
+
+## 🔧 Dev Setup
+
+To run the app locally:
+
+```bash
+# install dependencies
+npm install
+
+# start the dev server
+npm run dev
+```
+
+---
+
+## 📁 Project Structure
+
+```
+nity/
+├── src/
+│   ├── components/
+│   ├── App.tsx
+│   ├── main.tsx
+│   └── ...
+├── public/
+├── index.html
+├── vite.config.ts
+├── tsconfig.json
+├── package.json
+└── README.md
+```
+
+---
+
+## 🛠️ Linting & Tooling
+
+This project includes a minimal ESLint setup, and can be extended for production-ready apps.
+
+### Expanding ESLint Configuration (Optional)
+You can enable strict type-aware rules using:
 
 ```js
 export default tseslint.config({
   extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
     ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
     ...tseslint.configs.stylisticTypeChecked,
   ],
   languageOptions: {
-    // other options...
     parserOptions: {
       project: ['./tsconfig.node.json', './tsconfig.app.json'],
       tsconfigRootDir: import.meta.dirname,
@@ -31,25 +78,24 @@ export default tseslint.config({
 })
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🎓 For Course Use
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+This project is part of a DevOps implementation assignment for a COMP course at Centennial College. It integrates:
+
+- ✅ Agile tracking with Azure DevOps Boards
+- 🔁 Source control via GitHub
+- 🚀 CI/CD pipeline using Jenkins or Azure DevOps Pipelines
+
+---
+
+## 👥 Contributors
+
+- Khaleed  
+- Dikshya
+
+---
+
+> Built with clarity in mind — *Nity* is where neat meets productivity.
 ```
-# nity
