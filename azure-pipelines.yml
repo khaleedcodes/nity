@@ -17,8 +17,9 @@ stages:
           # Install Node.js (Updated to use NodeTool)
           - task: NodeTool@0
             inputs:
-              versionSpec: '15.x'  # Specify the Node.js version (16.x or other)
+              versionSpec: '23.x'  # Use the latest Current version
             displayName: 'Install Node.js'
+
 
           # Install project dependencies
           - script: npm install
