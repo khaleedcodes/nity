@@ -24,7 +24,11 @@ stages:
           - script: npm install
             displayName: 'Install Dependencies'
 
-          # Build the app (React app)
+          # Ensure required dependencies (like crypto-browserify) are installed
+          - script: npm install crypto-browserify
+            displayName: 'Install crypto-browserify'
+
+          # Build the app (React app using Vite)
           - script: npm run build
             displayName: 'Build the React App'
 
