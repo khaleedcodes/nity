@@ -41,3 +41,17 @@ stages:
               PathtoPublish: "$(Build.ArtifactStagingDirectory)"
               ArtifactName: "drop"
               publishLocation: "Container"
+
+  - stage: Test
+    displayName: "Run Unit Tests"
+    jobs:
+      - job: TestJob
+        displayName: "Test Job"
+        steps:
+          # Install dependencies
+          - script: npm install
+            displayName: "Install Dependencies"
+
+          # Run unit tests and generate coverage report
+          - script: npm run test -- --coverage
+            displayName: "Run Unit Tests and Generate Coverage Report"
