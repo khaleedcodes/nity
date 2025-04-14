@@ -28,10 +28,16 @@ stages:
           # Build the app (React app)
           - script: npm run build
             displayName: 'Build the React App'
+          # Copy build output to staging directory
+          - task: CopyFiles@2
+            inputs:
+              SourceFolder: '$(System.DefaultWorkingDirectory)/build'
+              Contents: '**'
+              TargetFolder: '$(Build.ArtifactStagingDirectory)'
+            displayName: 'Copy Build Output to Artifact Staging Directory'
 
           # Publish build artifacts (to use in later stages)
           - task: PublishBuildArtifacts@1
             inputs:
               PathtoPublish: '$(Build.ArtifactStagingDirectory)'
               ArtifactName: 'drop'
-              publishLocation: 'Container'
