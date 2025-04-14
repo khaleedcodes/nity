@@ -55,3 +55,103 @@ stages:
           # Run unit tests and generate coverage report
           - script: npm run test -- --coverage
             displayName: "Run Unit Tests and Generate Coverage Report"
+
+  - stage: DeployToDev
+    displayName: "Deploy to Dev Environment"
+    jobs:
+      - job: DeployDevJob
+        displayName: "Deploy to Dev"
+        steps:
+          # Install necessary tools for deployment
+          - task: NodeTool@0
+            inputs:
+              versionSpec: "18.x"
+            displayName: "Install Node.js for Deployment"
+
+          # Download the build artifact
+          - task: DownloadBuildArtifacts@0
+            inputs:
+              artifactName: "drop"
+              downloadPath: "$(System.DefaultWorkingDirectory)/artifact"
+            displayName: "Download Artifact"
+
+          # Deploy the app to Dev environment (example command, update for your actual deployment process)
+          - script: |
+              echo "Deploying to Dev environment"
+              npm run deploy -- --port 3000
+            displayName: "Deploy to Dev Environment"
+
+  - stage: DeployToQA
+    displayName: "Deploy to QA Environment"
+    jobs:
+      - job: DeployQAJob
+        displayName: "Deploy to QA"
+        steps:
+          # Install necessary tools for deployment
+          - task: NodeTool@0
+            inputs:
+              versionSpec: "18.x"
+            displayName: "Install Node.js for Deployment"
+
+          # Download the build artifact
+          - task: DownloadBuildArtifacts@0
+            inputs:
+              artifactName: "drop"
+              downloadPath: "$(System.DefaultWorkingDirectory)/artifact"
+            displayName: "Download Artifact"
+
+          # Deploy the app to QA environment (example command, update for your actual deployment process)
+          - script: |
+              echo "Deploying to QA environment"
+              npm run deploy -- --port 4000
+            displayName: "Deploy to QA Environment"
+
+  - stage: DeployToStaging
+    displayName: "Deploy to Staging Environment"
+    jobs:
+      - job: DeployStagingJob
+        displayName: "Deploy to Staging"
+        steps:
+          # Install necessary tools for deployment
+          - task: NodeTool@0
+            inputs:
+              versionSpec: "18.x"
+            displayName: "Install Node.js for Deployment"
+
+          # Download the build artifact
+          - task: DownloadBuildArtifacts@0
+            inputs:
+              artifactName: "drop"
+              downloadPath: "$(System.DefaultWorkingDirectory)/artifact"
+            displayName: "Download Artifact"
+
+          # Deploy the app to Staging environment (example command, update for your actual deployment process)
+          - script: |
+              echo "Deploying to Staging environment"
+              npm run deploy -- --port 5000
+            displayName: "Deploy to Staging Environment"
+
+  - stage: DeployToProduction
+    displayName: "Deploy to Production Environment"
+    jobs:
+      - job: DeployProductionJob
+        displayName: "Deploy to Production"
+        steps:
+          # Install necessary tools for deployment
+          - task: NodeTool@0
+            inputs:
+              versionSpec: "18.x"
+            displayName: "Install Node.js for Deployment"
+
+          # Download the build artifact
+          - task: DownloadBuildArtifacts@0
+            inputs:
+              artifactName: "drop"
+              downloadPath: "$(System.DefaultWorkingDirectory)/artifact"
+            displayName: "Download Artifact"
+
+          # Deploy the app to Production environment (example command, update for your actual deployment process)
+          - script: |
+              echo "Deploying to Production environment"
+              npm run deploy -- --port 8080
+            displayName: "Deploy to Production Environment"
