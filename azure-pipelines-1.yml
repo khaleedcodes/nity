@@ -1,0 +1,36 @@
+trigger:
+  branches:
+    include:
+      - main  # Trigger on changes to the 'main' branch
+
+pool:
+  name: 'Default'  # Use your self-hosted agent pool
+
+stages:
+  # Build Stage
+  - stage: Build
+    displayName: 'Build the Application'
+    jobs:
+      - job: BuildJob
+        displayName: 'Build Job'
+        steps:
+          # Install Node.js (Updated to use NodeTool)
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '23.x'  # Use the latest Current version
+            displayName: 'Install Node.js'
+
+
+          # Install project dependencies
+          - script: npm install
+            displayName: 'Install Dependencies'
+
+          # Build the app (React app)
+          - script: npm run build
+            displayName: 'Build the React App'
+
+          # Publish build artifacts (to use in later stages)
+          - task: PublishBuildArtifacts@1
+            inputs:
+              PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+              ArtifactName: 'drop'
