@@ -30,7 +30,7 @@ stages:
           # Copy build output to the artifact staging directory
           - task: CopyFiles@2
             inputs:
-              SourceFolder: "$(System.DefaultWorkingDirectory)/build"
+              SourceFolder: "$(System.DefaultWorkingDirectory)/dist"
               Contents: "**"
               TargetFolder: "$(Build.ArtifactStagingDirectory)"
             displayName: "Copy Build Output to Artifact Staging Directory"
